@@ -1,8 +1,148 @@
-\documentclass[11pt]{report}
+\documentclass[11pt]{article}
+\renewcommand{\labelenumi}{\alph{enumi}}
 
 \title{HW1}
+\author{Timo Wang}
+
+\usepackage[margin=0.5in]{geometry}
 
 \begin{document}
 \maketitle
+
+\section{Objects}
+
+\subsection{Courses}
+Courses are represented as follows:
+\begin{enumerate}
+  \item \texttt{cs111} - CS 111
+  \item \texttt{cs211} - CS 211
+  \item \texttt{cs321} - CS 321
+  \item \texttt{cs330} - CS 330
+  \item \texttt{cs335} - CS 335
+  \item \texttt{cs338} - CS 338
+  \item \texttt{cs348} - CS 348
+  \item \texttt{cs371} - CS 371
+\end{enumerate}
+
+\subsection{Students}
+Some students are also listed here:
+\begin{enumerate}
+  \item \texttt{xyz123} - student XYZ123
+  \item \texttt{xyz321} - student XYZ321
+  \item \texttt{zyx123} - student ZYX123
+\end{enumerate}
+
+
+\section{Types and attributes}
+
+\subsection{Types}
+The name of the type "CS course" is \texttt{CSCourse}.
+The courses and their corresponding types are represented as follows:
+\begin{enumerate}
+  \item \texttt{CSCourse(cs111)}
+  \item \texttt{CSCourse(cs211)}
+  \item \texttt{CSCourse(cs348)}
+  \item \texttt{CSCourse(cs371)}
+\end{enumerate}
+
+A more general type would be "Course", named as \texttt{Course} and \texttt{isa(CSCourse, Course)}
+Furthermore, \texttt{isa(Course, Object)} where \texttt{Object} is the "root" type. 
+
+The name of the type "student" is \texttt{Student}.
+Some students and their corresponding types are represented as follows:
+\begin{enumerate}
+  \item \texttt{Student(xyz123)}
+  \item \texttt{Student(xyz321)}
+  \item \texttt{Student(zyx123)}
+\end{enumerate}
+
+\subsection{Attributes}
+
+I will first declare the followings:
+\begin{enumerate}
+  \item \texttt{IsAICourse(CSCourse)} - A CS course is an AI course
+  \item \texttt{IsSystemCourse(CSCourse)} - A CS course is a system course
+  \item \texttt{IsTheoryCourse(CSCourse)} - A CS course is a theory course
+  \item \texttt{IsInterfaceCourse(CSCourse)} - A CS course is an interface course
+  \item \texttt{IsSoftwareDevCourse(CSCourse)} - A CS course is a software development course
+\end{enumerate}
+
+
+The listed courses are represented as follows as having the specified attributes:
+\begin{enumerate}
+  \item AI
+  \begin{itemize}
+    \item \texttt{IsAICourse(cs348)}
+    \item \texttt{IsAICourse(cs371)}
+  \end{itemize}
+  \item System
+  \begin{itemize}
+    \item \texttt{IsSystemCourse(cs321)}
+  \end{itemize}
+  \item Theory
+  \begin{itemize}
+    \item \texttt{IsTheoryCourse(cs335)}
+  \end{itemize}
+  \item Interface
+  \begin{itemize}
+    \item \texttt{IsInterfaceCourse(cs330)}
+  \end{itemize}
+  \item Software development
+  \begin{itemize}
+    \item \texttt{IsSoftwareDevCourse(cs338)}
+  \end{itemize}
+\end{enumerate}
+
+\section{Relations}
+The "pass" relationship between a student and a course is named \texttt{Pass} and defined as \texttt{Pass(Student, CSCourse)}. This relation has an arity of 2. Some example usages of it are listed below:
+\begin{enumerate}
+  \item \texttt{Pass(xyz123, cs371)} - Student XYZ123 passes CS371
+  \item \texttt{$\neg$Pass(xyz123, cs348)} - Student XYZ123 does not pass CS348
+  \item \texttt{Pass(xyz321, cs348)} - Student XYZ321 passes CS348
+\end{enumerate} 
+
+\section{Functions}
+The function to represent the number of credits for a course is named \texttt{numCreditOf} and is defined to be \\ \texttt{numCreditOf(Course)}. It has an arity of 1.
+
+A predicate \texttt{Equal(Object, Object)} is also defined to signify that two \texttt{Object}s are equal to each other.
+
+The demonstrations of the function are then listed as follows:
+\begin{enumerate}
+  \item \texttt{Equal(numCreditOf(cs371), 1)}
+  \item \texttt{Equal(numCreditOf(cs371), numCreditOf(cs348))}
+  \item \texttt{$\forall$ x [CSCourse(x) $\supset$ Equal(numCreditOf(course), 1)]}
+\end{enumerate}
+
+\section{Complex sentences}
+First, all new representations are defined. Then, the complex sentences are defined. 
+
+A predicate \texttt{GreaterEqual(Object, Object)} is defined to signify that the first \texttt{Object}, when applicable, is larger or equal to the second \texttt{Object}.
+
+A function to represent the number of credits a student has earned is name \texttt{numCSCreditEarnedBy} and is defined to be \texttt{numCSCreditEarnedBy(Student)} with an arity of 1.
+
+An attribute for a CS course to indicate whether it is a technical elective, \texttt{IsTechnicalElective(CSCourse)}
+
+\subsection{Problem 1}
+%\texttt{MeetCreditRequirement(s) $\equiv$ GreaterEqual(numCSCreditEarnedBy(s), 16)}
+\texttt{MeetCreditRequirement(s) $\equiv$ $\forall$ x [CSCourse(x) $\supset$ Equal(numCreditOf(course), 1)] $\land$ $\exists$ x1, x2, ..., x16 [CSCourse(x1) $\land$ CSCourse(x2) $\land$ ... $\land$ CSCourse(x16) $\land$ Pass(s, x1) $\land$ Pass(s, x2) $\land$ ... $\land$} \\ \texttt{Pass(s, x16)]}
+
+\subsection{Problem 2}
+\texttt{MeetBreadthRequirement(s) $\equiv$ $\exists$ x [CSCourse(x) $\land$ IsAICourse(x) $\land$ Pass(s, x)] $\land$ $\exists$ x [CSCourse(x) $\land$ IsSystemCourse(x) $\land$ Pass(s, x)] $\land$ $\exists$ x [CSCourse(x) $\land$ IsInterfaceCourse(x) $\land$ Pass(s, x)] $\land$ $\exists$ x [CSCourse(x) $\land$ IsSoftwareDevCourse(x) $\land$ Pass(s, x)]}
+
+\subsection{Problem 3}
+
+\texttt{MeetDepthRequirement(s) $\equiv$ $\exists$ x1, x2, x3, x4, x5, x6 [$\neg$ (x1 = x2 $\lor$ x1 = x3 $\lor$ x1 = x4 $\lor$ x1 = x5 $\lor$ x1 = x6 $\lor$ x2 = x3 $\lor$ x2 = x4 $\lor$ x2 = x5 $\lor$ x2 = x6 $\lor$ x3 = x4 $\lor$ x3 = x5 $\lor$ x3 = x6 $\lor$ x4 = x5 $\lor$ x4 = x6 $\lor$ x5 = x6) $\land$ CSCourse(x1) $\land$ IsTechnicalElective(x1) $\land$ CSCourse(x2) $\land$ IsTechnicalElective(x2) $\land$ CSCourse(x3) $\land$ IsTechnicalElective(x3) $\land$ CSCourse(x4) $\land$ IsTechnicalElective(x4) $\land$ CSCourse(x5) $\land$ IsTechnicalElective(x5) $\land$ CSCourse(x6) $\land$ IsTechnicalElective(x6) $\land$ Pass(s, x1) $\land$ Pass(s, x2) $\land$ Pass(s, x3) $\land$ Pass(s, x4) $\land$ Pass(s, x5) $\land$ Pass(s, x6)]}
+
+
+
+\subsection{Problem 4}
+\texttt{MeetAllRequirements(s) $\equiv$ MeetCreditRequirement(s) $\land$ MeetBreadthRequirement(s)} \\\texttt{$\land$ MeetDepthRequirement(s)}
+
+
+
+
+
+
+
 
 \end{document}
