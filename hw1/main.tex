@@ -124,7 +124,7 @@ An attribute for a CS course to indicate whether it is a technical elective, \te
 
 \subsection{Problem 1}
 %\texttt{MeetCreditRequirement(s) $\equiv$ GreaterEqual(numCSCreditEarnedBy(s), 16)}
-\texttt{MeetCreditRequirement(s) $\equiv$ $\forall$ x [CSCourse(x) $\supset$ Equal(numCreditOf(course), 1)] $\land$ $\exists$ x1, x2, ..., x16 [CSCourse(x1) $\land$ CSCourse(x2) $\land$ ... $\land$ CSCourse(x16) $\land$ Pass(s, x1) $\land$ Pass(s, x2) $\land$ ... $\land$} \\ \texttt{Pass(s, x16)]}
+\texttt{MeetCreditRequirement(s) $\equiv$ $\exists$ x1, x2, ..., x16 [CSCourse(x1) $\land$ CSCourse(x2) $\land$ ... $\land$ CSCourse(x16) $\land$ Equal(numCreditOf(x1), 1) $\land$ Equal(numCreditOf(x2), 1) $\land$ ... $\land$ Equal(numCreditOf(x16), 1) $\land$ Pass(s, x1) $\land$ Pass(s, x2) $\land$ ... $\land$} \texttt{Pass(s, x16)]}
 
 \subsection{Problem 2}
 \texttt{MeetBreadthRequirement(s) $\equiv$ $\exists$ x [CSCourse(x) $\land$ IsAICourse(x) $\land$ Pass(s, x)] $\land$ $\exists$ x [CSCourse(x) $\land$ IsSystemCourse(x) $\land$ Pass(s, x)] $\land$ $\exists$ x [CSCourse(x) $\land$ IsInterfaceCourse(x) $\land$ Pass(s, x)] $\land$ $\exists$ x [CSCourse(x) $\land$ IsSoftwareDevCourse(x) $\land$ Pass(s, x)]}
