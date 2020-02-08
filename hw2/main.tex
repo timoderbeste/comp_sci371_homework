@@ -1,12 +1,247 @@
 \documentclass[11pt]{article}
+\usepackage{listings}
+\usepackage[margin=0.5in]{geometry}
+
 \renewcommand{\labelenumi}{\alph{enumi}}
+
+\lstdefinestyle{cycstyle}{
+  basicstyle=\ttfamily,
+  showstringspaces=false,
+  keywordstyle=\color{magenta}
+}
+
+\lstset{style=cycstyle}
 
 \title{HW2}
 \author{Timo Wang}
 
-\usepackage[margin=0.5in]{geometry}
-
 \begin{document}
 \maketitle
+
+\section{Concept Definitions}
+\subsection{Danilo Ribeiro}
+This \textbf{entity} concept is defined below. 
+\begin{lstlisting}[language=lisp]
+
+(isa DaniloRibeiro Individual)
+(isa DaniloRibeiro MaleHuman)
+(isa DaniloRibeiro PhDStudent)
+(prettyString-Canonical DaniloRibeiro "Ribeiro, Danilo")
+(comment DaniloRibeiro "A male PhD student at Northwestern University.")
+  
+\end{lstlisting}
+
+\subsection{Irina Rabkina}
+This \textbf{entity} concept is defined below. 
+\begin{lstlisting}[language=lisp]
+
+(isa IrinaRabkina Individual)
+(isa IrinaRabkina FemaleHuman)
+(isa IrinaRabkina PhDStudent)
+(prettyString-Canonical IrinaRabkina "Rabkina, Irina")
+(comment DaniloRibeiro "A female PhD student at Northwestern University.")
+  
+\end{lstlisting}
+
+\subsection{Faculty Office}
+This \textbf{collection} concept is defined below.
+\begin{lstlisting}[language=lisp]
+
+(isa FacultyOffice ContactLocationType)
+(isa FacultyOffice SpatiallyDisjointObjectType)
+(genls FacultyOffice OfficeRoom)
+(genls FacultyOffice OfficeSpace-Personal)
+(genls FacultyOffice  PartOfBuilding)
+(genls FacultyOffice RoomInAConstruction)
+(comment FacultyOffice 
+         "Single-room offices where one or two faculties typically work.")
+
+\end{lstlisting}
+
+\subsection{Room 3106}
+This \textbf{entity} concept is defined below.
+\begin{lstlisting}[language=lisp]
+  (isa Room-3106 RoomInAConstruction)
+  (isa Room-3106 PartOfBuilding)
+  (isa Room-3106 SpatiallyDisjointObjectType)
+  (prettyString-Canonical Room-3106 "RM 3106")
+  (comment Room-3106 "An office in Mudd Building with number 3106.")
+\end{lstlisting}
+
+\subsection{Irina's Office}
+This \textbf{entity} concept is defined below.
+\begin{lstlisting}[language=lisp]
+  (isa OfficeOfIrina OfficeRoom)
+  (isa OfficeOfIrina RoomInAConstruction)
+  (isa OfficeOfIrina PartOfBuilding)
+  (comment OfficeOfIrina "The office where Irina Rabkina works.")
+\end{lstlisting}
+
+\subsection{AI Collaboration Room}
+This \textbf{entity} concept is defined below.
+\begin{lstlisting}[language=lisp]
+  (isa AICollaborationRoom StudyRoom)
+  (isa AICollaborationRoom WorkRoom)
+  (isa AICollaborationRoom PartOfBuilding)
+  (isa AICollaborationRoom RoomInAConstruction)
+  (comment AICollaborationRoom
+           "The room for people to study or work together in the field of AI")
+\end{lstlisting}
+
+\subsection{Women's restroom}
+This \textbf{entity} concept is defined below.
+\begin{lstlisting}[language=lisp]
+  (isa WomensRestroom WomensRoom)
+  (isa WomensRestroom PublicRestroom)
+  (isa WomensRestroom PartOfBuilding)
+  (isa WomensRestroom RoomInAConstruction)
+  (comment WomensRestroom
+           "The restroom for women only in the Mudd Building")
+\end{lstlisting}
+
+\subsection{Men's restroom}
+This \textbf{entity} concept is defined below.
+\begin{lstlisting}[language=lisp]
+  (isa MensRestroom WomensRoom)
+  (isa MensRestroom PublicRestroom)
+  (isa MensRestroom PartOfBuilding)
+  (isa MensRestroom RoomInAConstruction)
+  (comment MensRestroom
+           "The restroom for men only in the Mudd Building")
+\end{lstlisting}
+
+\subsection{Welcome desk}
+This \textbf{entity} concept is defined below.
+\begin{lstlisting}[language=lisp]
+  (isa WelcomeDesk InformationCenter)
+  (isa WelcomeDesk InformationProvidingOrganization)
+  (isa WelcomeDesk SingleSiteOrganization)
+  (isa WelcomeDesk PartOfBuilding)
+  (comment WelcomeDesk
+           "The location where visitors or students or professors 
+           can get some quick information.")
+\end{lstlisting}
+
+\subsection{Companions Kiosk}
+This \textbf{entity} concept is defined below.
+\begin{lstlisting}[language=lisp]
+  (isa CompanionsKiosk InformationCenter)
+  (isa CompanionsKiosk InformationProvidingOrganization)
+  (isa CompanionsKiosk SingleSiteOrganization)
+  (isa CompanionsKiosk CompanionsDomain)
+  (isa CompanionsKiosk PartOfBuilding)
+  (comment CompanionsKiosk
+           "A kiosk where visitors or students or professors can get 
+           the direction to the office of whomever they want to visit.")
+\end{lstlisting}
+
+\subsection{Northwest conference room}
+This \textbf{entity} concept is defined below.
+\begin{lstlisting}[language=lisp]
+  (isa ConferenceRoom-Northwest ConferenceRoom)
+  (isa ConferenceRoom-Northwest MeetingSpace)
+  (isa ConferenceRoom-Northwest PartOfBuilding)
+  (isa ConferenceRoom-Northwest RoomInAConstruction)
+  (comment ConferenceRoom-Northwest
+           "The conference room at the north west corner of Mudd.")
+\end{lstlisting}
+
+\subsection{Open workspace}
+This \textbf{collection} concept is defined below.
+\begin{lstlisting}[language=lisp]
+  (isa OpenWorkspace ExistingObjectType)
+  (isa OpenWorkspace SpatiallyDisjointObjectType)
+  (genls OpenWorkspace PartOfBuilding)
+  (genls OpenWorkspace WorkEnvironment)
+  (comment OpenWorkspace
+           "A space or environment where everyone can utilize to do work.")
+\end{lstlisting}
+
+\subsection{Around the corner}
+This \textbf{predicate} concept is defined below.
+\begin{lstlisting}[language=lisp]
+  (isa aroundCornerFrom BinaryPredicate)
+  (isa aroundCornerFrom RelativeLocationalPredicate)
+  (genlPreds aroundCornerFrom near)
+  (arity aroundCornerFrom 2)
+  (arg1Isa aroundCornerFrom SpatialThing)
+  (arg2Isa aroundCornerFrom SpatialThing)
+  (comment aroundCornerFrom
+           "This relation predicate indicates that arg1 is around the corner 
+           from arg2.")
+\end{lstlisting}
+
+\subsection{Across the hall}
+This \textbf{predicate} concept is defined below.
+\begin{lstlisting}[language=lisp]
+  (isa acrossTheHallFrom BinaryPredicate)
+  (isa acrossTheHallFrom RelativeLocationalPredicate)
+  (genlPreds acrossTheHallFrom near)
+  (arity acrossTheHallFrom 2)
+  (arg1Isa acrossTheHallFrom SpatialThing)
+  (arg2Isa acrossTheHallFrom SpatialThing)
+  (comment acrossTheHallFrom
+           "This relation predicate indicates that arg1 is across the hall
+           from arg2.")
+\end{lstlisting}
+
+\subsection{Next door}
+This \textbf{predicate} concept is defined below.
+\begin{lstlisting}[language=lisp]
+  (isa nextDoorTo BinaryPredicate)
+  (isa nextDoorTo RelativeLocationalPredicate)
+  (genlPreds nextDoorTo near)
+  (arity nextDoorTo 2)
+  (arg1Isa nextDoorTo SpatialThing)
+  (arg2Isa nextDoorTo SpatialThing)
+  (comment nextDoorTo
+           "This relation predicate indicates that arg1 is next door to
+           arg2.")
+\end{lstlisting}
+
+\section{Sentences}
+\subsection{}
+\begin{lstlisting}[language=lisp]
+  (isa working001 WorkingEvent)
+  (doneBy working001 DaniloRibeiro)
+  (eventOccursAt working001 Room-3106)
+\end{lstlisting}
+
+\subsection{}
+\begin{lstlisting}[language=lisp]
+  (aroundCornerFrom CompanionsKiosk OfficeOfIrina)
+\end{lstlisting}
+
+\subsection{}
+\begin{lstlisting}[language=lisp]
+  (isa ow001 OpenWorkspace)
+  (acrossTheHallFrom WelcomeDesk ow001)
+\end{lstlisting}
+
+\subsection{}
+\begin{lstlisting}[language=lisp]
+  (isa office001 OfficeRoom)
+  (nextDoorTo office001 OfficeOfIrina)
+  (aroundCornerFrom office001 Room-3106)
+  (nextDoorTo AICollaborationRoom office001)
+\end{lstlisting}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \end{document}
