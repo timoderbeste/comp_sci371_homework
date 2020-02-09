@@ -1,0 +1,28 @@
+(in-microtheory KRR-Winter2020RulesMt)
+
+;;; 0)
+;;; "Tuesday and Thursday from 2:00 to 8:00",
+;;; "Tuesday and Thursday from 11:00 to 12:20"
+(<== (courseTaughtTime ?person ?time)
+     (courseInstructor ?course ?person)
+     (courseTimeString ?course ?time))
+
+
+;;; 1)
+;;; jrw@northwestern.edu
+(<== (emailOfCourseInstructor ?course ?email)
+     (courseInstructor ?course ?instructor)
+     (emailOf ?instructor ?email))
+
+;;; 2) Needs more work!!!!
+(<== (degreeEarnedAt ?faculty ?institution)
+     (isa ?faculty NUFaculty)
+     (or 
+      (schooling ?faculty ?institution PhD)
+      (schooling ?faculty ?institution MS)))
+
+;;; 3)
+(<== (phdInstitutionsByQuarterTaught ?quarter ?institution)
+     (isa ?course (CourseFn ?quarter))
+     (courseInstructor ?course ?instructor)
+     (schooling ?instructor ?institution PhD))

@@ -1,0 +1,94 @@
+(in-microtheory KRR-Winter2020FactsMt)
+(genlMt KRR-Winter2020FactsMt (CoursesMtFn (FallQuarterFn 
+     											(AcademicYearFn 	
+       												NorthwesternUniversity 
+       											(YearFn 2019)))))
+
+(genlMt KRR-Winter2020FactsMt (CoursesMtFn (WinterQuarterFn 
+     											(AcademicYearFn 	
+       												NorthwesternUniversity 
+       											(YearFn 2019)))))
+       											
+(genlMt KRR-Winter2020FactsMt (CoursesMtFn (SpringQuarterFn 
+     											(AcademicYearFn 	
+       												NorthwesternUniversity 
+       											(YearFn 2019)))))
+       											
+(genlMt KRR-Winter2020InClassMt KRR-Winter2020FactsMt)
+(genlMt KRR-Winter2020RulesMt KRR-Winter2020FactsMt)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; for the in-class assignment ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;(sameInstructor ?course1 ?course2)
+(isa sameInstructor Predicate)
+(arity sameInstructor 2)
+(arg1Isa sameInstructor NUCourse)
+(arg2Isa sameInstructor NUCourse)
+(comment sameInstructor "(sameInstructor ?course1 ?course2) says that the same person teachs ?course1 and ?course2")
+
+;;;(multipleInstructors ?course ?quarter)
+(isa multipleInstructors Predicate)
+(arity multipleInstructors 2)
+(arg1Isa multipleInstructors NUCourse)
+(arg2Isa multipleInstructors AcademicQuarter)
+(comment multipleInstructors "(multipleInstructors ?course ?quarter) says that ?course is taught by more than one instructor during ?quarter")
+
+;;;(otherCourseTaughtNameString ?course1-name ?course2-name)
+(isa otherCourseTaughtNameString Predicate)
+(arity otherCourseTaughtNameString 2)
+(arg1Isa otherCourseTaughtNameString StringObject)
+(arg2Isa otherCourseTaughtNameString StringObject)
+(comment otherCourseTaughtNameString "(otherCourseTaughtNameString ?course1 ?course2) says that an instructor who teaches a course with the namestring ?course1 also teaches a course with the namestring ?course2")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; for the homework ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; (courseTaughtTime ?person ?time)
+(isa courseTaughtTime Predicate)
+(arity courseTaughtTime 2)
+(arg1Isa courseTaughtTime NUPerson)
+(arg2Isa courseTaughtTime StringObject)
+(comment courseTaughtTime "(courseTaughtTime ?person ?time) says that ?person is assigned to teach some class at time ?time")
+
+;;;  (emailOfCourseInstructor ?course ?email)
+(isa emailOfCourseInstructor Predicate)
+(arity emailOfCourseInstructor 2)
+(arg1Isa emailOfCourseInstructor Course-Collegiate)
+(arg2Isa emailOfCourseInstructor EMailAddress)
+(comment emailOfCourseInstructor "(emailOfCourseInstructor ?course ?email) says that the email address of the instructor of ?course is ?email")
+
+;;;(degreeEarnedAt ?faculty ?uni)
+(isa degreeEarnedAt Predicate)
+(arity degreeEarnedAt 2)
+(arg1Isa degreeEarnedAt Agent-Generic)
+(arg2Isa degreeEarnedAt DegreeGrantingHigherEducationInstitution)
+(comment degreeEarnedAt "(degreeEarnedAt ?person ?university) says that ?person earned some degree at ?unviersity")
+
+;;;(phdInstitutionsByQuarterTaught ?quarter ?institution)
+(isa phdInstitutionsByQuarterTaught Predicate)
+(arity phdInstitutionsByQuarterTaught 2)
+(arg1Isa phdInstitutionsByQuarterTaught AcademicQuarter)
+(arg2Isa phdInstitutionsByQuarterTaught DegreeGrantingHigherEducationInstitution)
+(comment phdInstitutionsByQuarterTaught "(phdInstitutionsByQuarterTaught ?quarter ?institution) says that a person who teaches some class during ?quarter earned a degree at ?institution")
+
+;;;(teachesMultiple ?name ?year)
+(isa teachesMultiple Predicate)
+(arity teachesMultiple 2)
+(arg1Isa teachesMultiple HumanNameString)
+(arg2Isa teachesMultiple AcademicQuarter)
+(comment teachesMultiple "(teachesMultiple ?person ?year) says that ?person teaches some class multiple times during the academic year ?year")
+
+;;; (educationOfTeachersOfMultiple ?university ?quarter)
+(isa educationOfTeachersOfMultiple Predicate)
+(arity educationOfTeachersOfMultiple 2)
+(arg1Isa educationOfTeachersOfMultiple College)
+(arg2Isa educationOfTeachersOfMultiple AcademicQuarter)
+(comment educationOfTeachersOfMultiple "(educationOfTeachersOfMultiple ?university ?quarter) says that a person who got their PhD at ?university teaches multiple classes during ?quarter")
+
+;;; (taughtMultiple ?course ?year)
+(isa taughtMultiple Predicate)
+(arity taughtMultiple 2)
+(arg1Isa tuaghtMultiple StringObject)
+(arg2Isa taughtMultiple AcademicYear)
+(comment taughtMultiple "(taughtMultiple ?course ?year) says that ?course is either taught by the same instructor during two different quartors or by different instructors during each of 3 quarters during ?year")
+
+
+;;; missing facts
+(fullName Wilson "Jason 'Willie' Wilson")
