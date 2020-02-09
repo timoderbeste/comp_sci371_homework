@@ -70,17 +70,21 @@
      (isa ?university DegreeGrantingHigherEducationInstitution))
 
 ;;; 6)
-(<== (taughtMultiple ?course ?year)
-     (taughtSame ?course ?year)
-     (taughtDifferent ?course ?year))
+;;; Design & Analysis of Algorithms
+;;; Human Computer Interaction
+;;; Introduction to Artificial Intelligence
+;;; Introduction to Computer Systems
+(<== (taughtMultiple ?courseName ?year)
+     (taughtSame ?courseName ?year)
+     (taughtDifferent ?courseName ?year))
 
-(<== (taughtSame ?course ?year)
+(<== (taughtSame ?courseName ?year)
      (courseName ?course ?courseName)
      (courseName ?course2 ?courseName2)
      (equals ?courseName ?courseName2)
      (different ?course ?course2 CS396-Winter2019 CS396-Spring2019 CS396-Fall2019))
 
-(<== (taughtDifferent ?course ?year)
+(<== (taughtDifferent ?courseName ?year)
      (courseName ?course ?courseName)
      (courseName ?course2 ?courseName2)
      (equals ?courseName ?courseName2)
